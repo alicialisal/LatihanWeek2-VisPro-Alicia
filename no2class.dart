@@ -1,23 +1,33 @@
 class BankAccount {
-  double _balance;
+  int _balance;
 
   BankAccount(this._balance);
 
-  double get balance => _balance;
+  int get balance => _balance;
 
-  set balance(double balance) {
+  set balance(int balance) {
     this._balance = balance;
   }
 
-  void deposit(double jumdeposit) {
-    if (jumdeposit >= 50000)
-      _balance = _balance + jumdeposit;
+  void deposit(int jumdeposit, bool bunga) {
+    if (bunga == false)
+    {
+      if (jumdeposit >= 50000)
+        _balance = _balance + jumdeposit;
+      else
+        print("Jumlah deposit tidak valid.");
+    }
     else
-      print("Jumlah deposit tidak boleh minus.");
+    {
+      if (jumdeposit > 0)
+        _balance = _balance + jumdeposit;
+      else
+        print("Jumlah deposit tidak valid.");
+    }
     // return _balance;
   }
 
-  void withdraw(double jumwithdraw) {
+  void withdraw(int jumwithdraw) {
     if (jumwithdraw >= 50000)
       _balance = _balance - jumwithdraw;
     else if (jumwithdraw < _balance)
@@ -33,7 +43,7 @@ class BankAccount {
 class SavingsAccount extends BankAccount {
   double _interestRate;
 
-  SavingsAccount(double balance, this._interestRate) : super(balance);
+  SavingsAccount(int balance, this._interestRate) : super(balance);
 
   double get interestRate => _interestRate;
 
@@ -42,20 +52,8 @@ class SavingsAccount extends BankAccount {
   }
 
   void hitungbunga() {
-    double jumbunga = _balance * (_interestRate / 100);
-    deposit(jumbunga);
+    int jumbunga = (_balance * (_interestRate / 100)).toInt();
+    deposit(jumbunga, true);
     print("Sebesar ${jumbunga} telah ditambahkan sebagai bunga simpanan");
   }
-}
-
-void main() {
-  SavingsAccount bankAlicia = new SavingsAccount(100000, 0.5);
-
-  bankAlicia.withdraw(100000);
-  bankAlicia.checkBalance();
-
-  bankAlicia.deposit(5000000);
-  bankAlicia.checkBalance();
-
-  bankAlicia.hitungbunga();
 }

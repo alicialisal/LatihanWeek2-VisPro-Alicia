@@ -1,7 +1,18 @@
+import 'dart:io';
+
 import 'no1class.dart';
 
 void main() {
-  Student mhs = Student("Alicia", "0806022310002", 95.0);
+  stdout.write("Masukkan nama siswa: ");
+  String siswa = stdin.readLineSync()!;
+
+  stdout.write("Masukkan NIM siswa: ");
+  String NIM = stdin.readLineSync()!;
+
+  stdout.write("Masukkan nilai siswa: ");
+  double nilai = double.parse(stdin.readLineSync()!);
+
+  Student mhs = Student(siswa, NIM, nilai);
 
   print("Data Mahasiswa:\n${mhs.display()}");
 

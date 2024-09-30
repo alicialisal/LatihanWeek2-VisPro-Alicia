@@ -1,11 +1,11 @@
 class ATM {
-  double _balance;
+  int _balance;
 
   ATM(this._balance);
 
-  double get balance => _balance;
+  int get balance => _balance;
 
-  void deposit(double jumdeposit) {
+  void deposit(int jumdeposit) {
     if (jumdeposit >= 50000)
       _balance += jumdeposit;
     else
@@ -13,7 +13,7 @@ class ATM {
     // return _balance;
   }
 
-  void withdraw(double jumwithdraw) {
+  void withdraw(int jumwithdraw) {
     if (jumwithdraw >= 50000 && jumwithdraw <= _balance)
       _balance = _balance - jumwithdraw;
     else {
